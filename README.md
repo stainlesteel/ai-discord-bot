@@ -1,6 +1,10 @@
 # ai-discord-bot
 A discord bot using Google Gemini to let anyone in a server talk to AI publicly.
 A dockerfile and docker-compose.yml is also available for self-hosting.
+Features include:
+   - Connecting to Google Search for specific answers.
+   - Adding custom instructions for Gemini.
+
 # How to self-host (with Docker Compose)
 1. Download the files.
 2. Go to the directory of the bot.
