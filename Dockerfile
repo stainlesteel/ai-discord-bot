@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r re
 
 COPY bot.py .
 
-CMD ["python3", "main.py"]
+CMD ["python3", "bot.py"]
