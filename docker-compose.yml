@@ -1,9 +1,7 @@
 # docker-compose.yml
-version: '3.8'
-
 services:
  ai-bot:
-   build: .
+   image: stainlesteel/ai-discord-bot:latest
    restart: unless-stopped
    deploy:
      resources:
