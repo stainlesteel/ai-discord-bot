@@ -1,8 +1,16 @@
 # docker-compose.yml
+# DISCORD_TOKEN= for the discord developers api key
+# GEMINI_TOKEN= gemini api free tier has restrictions
+# SYS_INS= you can add custom message instructions for gemini
+
 services:
  ai-bot:
    image: stainlesteel/ai-discord-bot:latest
    restart: unless-stopped
+   environment:
+       DISCORD_TOKEN=
+       GEMINI_TOKEN= 
+       SYS_INS=""
    deploy:
      resources:
       limits:

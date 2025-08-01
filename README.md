@@ -6,10 +6,9 @@ Features include:
    - Adding custom instructions for Gemini.
 
 # How to self-host (with Docker Compose)
-1. Download the files.
-2. Go to the directory of the bot.
-3. Through a text editor (i.e. nano) add your 2 API keys.
-4. In a shell, type
-   `sudo docker compose up -d --build`
-5. Wait for it to build and start.
-6. Done (you can check `sudo docker ps -a` for the bot process.)
+1. Get the docker-compose.yml.
+2. Add in your 2 or 3 env variables.
+3. Deploy it: `docker compose up -d`
+4. Done!
+
+
