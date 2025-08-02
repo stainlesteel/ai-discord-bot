@@ -38,8 +38,8 @@ async def ai(ctx: discord.ApplicationContext, question: str = Option(str, descri
             tools=[gtool] # connects to the config variable above in this function
          )
         )
-        outs = f"You asked: {question}\n {resp.text}" # returns user's question and ai response
-        await ctx.respond(outs) # prints above
+       outs = f"You asked: {question}\n {resp.text}" # returns user's question and ai response
+       await ctx.respond(outs) # prints above
   except discord.errors.ApplicationCommandInvokeError:
         await ctx.respond("HTTP error: Gemini's response was longer than 2000 characters \n which is Discord's bot charatcer limit.") 
 
