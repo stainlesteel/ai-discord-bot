@@ -5,12 +5,13 @@
 
 services:
  ai-bot:
+   build: .
    image: stainlesteel/ai-discord-bot:latest
    restart: unless-stopped
    environment:
-       DISCORD_TOKEN=
-       GEMINI_TOKEN= 
-       SYS_INS=""
+       DISCORD_TOKEN: 
+       GEMINI_TOKEN:
+       SYS_INS: | # add a string below
    deploy:
      resources:
       limits:
