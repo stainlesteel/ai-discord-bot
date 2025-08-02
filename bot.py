@@ -15,9 +15,11 @@ fk = os.getenv("GEMINI_TOKEN")
 client = genai.Client(api_key=fk)
 sys_string = os.getenv("SYS_INS")
 
-system_instruction_combined_string="""
+if fk:
+  system_instruction_combined_string = fk
+else:
+  system_instruction_combined_string = ""
 
-        """
 # you can add sys instructions for gemini here (recommended: Keep all responses 1500 characters or less)
 
 bot = commands.Bot()
