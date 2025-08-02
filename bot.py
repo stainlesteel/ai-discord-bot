@@ -10,8 +10,9 @@ import dotenv
 # there is environment variables for docker and ease of use
 dotenv.load_dotenv()
 # You need a discord app api key and a gemini api key (both are free, gemini api has limits on free tier)
-tool = os.getenv("DISCORD_TOKEN") 
-client = genai.Client(os.getenv("GEMINI_TOKEN"))
+tool = os.getenv("DISCORD_TOKEN")
+fk = os.getenv("GEMINI_TOKEN")
+client = genai.Client(api_key=fk)
 sys_string = os.getenv("SYS_INS")
 
 system_instruction_combined_string="""
