@@ -11,7 +11,7 @@ import dotenv
 dotenv.load_dotenv()
 # You need a discord app api key and a gemini api key (both are free, gemini api has limits on free tier)
 tool = os.getenv("DISCORD_TOKEN") 
-client = os.getenv("GEMINI_TOKEN")
+client = genai.Client(os.getenv("GEMINI_TOKEN"))
 sys_string = os.getenv("SYS_INS")
 
 system_instruction_combined_string="""
