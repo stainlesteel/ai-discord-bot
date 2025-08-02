@@ -15,8 +15,8 @@ fk = os.getenv("GEMINI_TOKEN")
 client = genai.Client(api_key=fk)
 sys_string = os.getenv("SYS_INS")
 
-if fk:
-  system_instruction_combined_string = fk
+if sys_string:
+  system_instruction_combined_string = sys_string
 else:
   system_instruction_combined_string = ""
 
@@ -26,19 +26,22 @@ bot = commands.Bot()
 
 @bot.slash_command(name='text', description='Ask Gemini whatever')# slash command
 async def ai(ctx: discord.ApplicationContext, question: str = Option(str, description="Ask Gemini whatever")):# defines function, description and input box
-   gtool = types.Tool(
-    google_search=types.GoogleSearch()
-   )# this is a config allowing gemini to connect to google when needed (base gemini is outdated)
-   await ctx.defer() # required as discord requires a 3 second reponse time without this
-   resp = client.models.generate_content(
-    model="gemini-2.5-flash", contents=question, # uses 2.5-flash, contents are the "question" inout box above
-    config=genai.types.GenerateContentConfig(
-        system_instruction=system_instruction_combined_string, # connects to the sys instruction variable at line 12
-        tools=[gtool] # connects to the config variable above in this function
-    )
-   )
-   outs = f"You asked: {question}\n {resp.text}" # returns user's question and ai response
-   await ctx.respond(outs) # prints above
+  try:
+       gtool = types.Tool(
+          google_search=types.GoogleSearch()
+       )# this is a config allowing gemini to connect to google when needed (base gemini is outdated)
+       await ctx.defer() # required as discord requires a 3 second reponse time without this
+       resp = client.models.generate_content(
+        model="gemini-2.5-flash", contents=question, # uses 2.5-flash, contents are the "question" inout box above
+        config=genai.types.GenerateContentConfig(
+            system_instruction=system_instruction_combined_string, # connects to the sys instruction variable at line 12
+            tools=[gtool] # connects to the config variable above in this function
+         )
+        )
+        outs = f"You asked: {question}\n {resp.text}" # returns user's question and ai response
+        await ctx.respond(outs) # prints above
+  except discord.errors.ApplicationCommandInvokeError:
+        await ctx.respond("HTTP error: Gemini's response was longer than 2000 characters \n which is Discord's bot charatcer limit.") 
 
 
 bot.run(tool) # runs bot with discord api key in the 'tool' var at line 8
